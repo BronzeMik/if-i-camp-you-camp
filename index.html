@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Industry & SDLC Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;  
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            width: 95%;
+            max-width: 1000px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #87CEEB;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #FFD700;
+        }
+
+        .big-number {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .salary {
+            color: #90EE90;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 1.1em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .field-card, .job-card {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .field-card:hover, .job-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .path-box {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid;
+            text-align: left;
+        }
+
+        .path-traditional { border-left-color: #FF6B6B; }
+        .path-alternative { border-left-color: #4ECDC4; }
+        .path-online { border-left-color: #45B7D1; }
+
+        .sdlc-step {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #FFD700;
+            text-align: left;
+        }
+
+        .step-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-right: 10px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .resource-list {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .small-text {
+            font-size: 1.1em;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            p, li { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+        </div>
+
+        <!-- Slide 1: Welcome & Introduction -->
+        <div class="slide active">
+            <h1>Welcome to IT & Software Development!</h1>
+            <div class="highlight">
+                <h3>Workshop Goals</h3>
+                <ul>
+                    <li>Understand what IT is</li>
+                    <li>Learn about tech careers</li>
+                    <li>Explore how people get started in tech</li>
+                    <li>Understand how software is built (SDLC)</li>
+                </ul>
+            </div>
+            <h2>Let's explore your future in technology!</h2>
+        </div>
+
+        <!-- Slide 2: What is Information Technology (IT)? -->
+        <div class="slide">
+            <h2>What is Information Technology (IT)?</h2>
+            <div class="highlight">
+                <p><strong>Simple Definition:</strong> IT is using computers and technology to solve problems, store information, and connect people</p>
+            </div>
+            
+            <h3>IT is everywhere in your daily life:</h3>
+            <div class="grid">
+                <div class="field-card">
+                    <span class="icon">📱</span>
+                    <p><strong>Your Phone</strong><br>Apps, texting, social media</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🌐</span>
+                    <p><strong>Websites</strong><br>Google, YouTube, TikTok</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🛒</span>
+                    <p><strong>Online Shopping</strong><br>Amazon, DoorDash, Uber</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🎮</span>
+                    <p><strong>Gaming</strong><br>PlayStation, Xbox, mobile games</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Fields Within IT -->
+        <div class="slide">
+            <h2>Major Fields in IT</h2>
+            <div class="grid">
+                <div class="field-card">
+                    <span class="icon">💻</span>
+                    <h3>Software Development</h3>
+                    <p>Building apps, websites, and programs</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🔒</span>
+                    <h3>Cybersecurity</h3>
+                    <p>Protecting systems from hackers</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">📊</span>
+                    <h3>Data Science</h3>
+                    <p>Finding patterns in large amounts of data</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🛠️</span>
+                    <h3>IT Support</h3>
+                    <p>Helping people fix tech problems</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🌐</span>
+                    <h3>Networking</h3>
+                    <p>Connecting computers and systems</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">☁️</span>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Managing servers and deployments</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Cool Jobs in Tech -->
+        <div class="slide">
+            <h2>Cool Jobs in Tech</h2>
+            <div class="grid">
+                <div class="job-card">
+                    <span class="icon">🌐</span>
+                    <h3>Web Developer</h3>
+                    <p>Build websites people use every day</p>
+                    <p class="salary">$45,000 - $85,000</p>
+                </div>
+                <div class="job-card">
+                    <span class="icon">🎮</span>
+                    <h3>Game Developer</h3>
+                    <p>Create the games you love to play</p>
+                    <p class="salary">$50,000 - $120,000</p>
+                </div>
+                <div class="job-card">
+                    <span class="icon">⚙️</span>
+                    <h3>Software Engineer</h3>
+                    <p>Build complex apps and systems</p>
+                    <p class="salary">$60,000 - $150,000</p>
+                </div>
+                <div class="job-card">
+                    <span class="icon">🔍</span>
+                    <h3>Ethical Hacker</h3>
+                    <p>Find security flaws to help companies</p>
+                    <p class="salary">$70,000 - $130,000</p>
+                </div>
+                <div class="job-card">
+                    <span class="icon">📈</span>
+                    <h3>Data Analyst</h3>
+                    <p>Turn numbers into business insights</p>
+                    <p class="salary">$50,000 - $90,000</p>
+                </div>
+                <div class="job-card">
+                    <span class="icon">🖥️</span>
+                    <h3>System Administrator</h3>
+                    <p>Keep computer networks running smoothly</p>
+                    <p class="salary">$45,000 - $80,000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: How People Get Into IT -->
+        <div class="slide">
+            <h2>How People Get Into IT</h2>
+            <div class="grid-container">
+            <div class="path-box path-traditional">
+                <h3>🎓 Traditional Paths</h3>
+                <ul>
+                    <li><strong>College Degrees:</strong> Computer Science, Information Technology, Software Engineering</li>
+                    <li><strong>Time:</strong> 4 years</li>
+                    <li><strong>Benefits:</strong> Comprehensive education, higher starting salaries</li>
+                </ul>
+            </div>
+
+            <div class="path-box path-alternative">
+                <h3>🚀 Alternative Paths</h3>
+                <ul>
+                    <li><strong>Coding Bootcamps:</strong> Intensive 3-18 month programs</li>
+                    <li><strong>Self-Taught + Practice:</strong> Learn online, build projects</li>
+                    <li><strong>Certifications:</strong> CompTIA, Google, AWS, Microsoft</li>
+                </ul>
+            </div>
+
+            <div class="path-box path-online">
+                <h3>💻 Online Learning Tools</h3>
+                <ul>
+                    <li><strong>Free:</strong> FreeCodeCamp, Khan Academy, YouTube</li>
+                    <li><strong>Interactive:</strong> Codecademy, Replit</li>
+                    <li><strong>Practice:</strong> Build real projects, contribute to open source</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: What is SDLC? -->
+        <div class="slide">
+            <h2>What is the Software Development Life Cycle (SDLC)?</h2>
+            
+            <div class="highlight">
+                <p><strong>SDLC is the process that turns ideas into working software</strong></p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>It's NOT just coding!</h3>
+                    <ul>
+                        <li>Planning what to build</li>
+                        <li>Designing how it looks</li>
+                        <li>Writing the code</li>
+                        <li>Testing everything works</li>
+                        <li>Launching for users</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Why it matters:</h3>
+                    <ul>
+                        <li>Keeps teams organized</li>
+                        <li>Prevents chaos and confusion</li>
+                        <li>Makes teamwork easier</li>
+                        <li>It's how REAL companies work!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: SDLC Step-by-Step -->
+        <div class="slide">
+            <h2>SDLC Step-by-Step</h2>
+            
+            <div class="sdlc-step">
+                <span class="step-number">1.</span>
+                <strong>PLAN:</strong> What problem are we solving? Who will use this? What features do we need?
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">2.</span>
+                <strong>DESIGN:</strong> What will it look like? How will users interact with it? Sketch the interface.
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">3.</span>
+                <strong>DEVELOP:</strong> Start coding the functionality. Build the features step by step.
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">4.</span>
+                <strong>TEST:</strong> Does it work? Are there any bugs? Is it easy to use?
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">5.</span>
+                <strong>LAUNCH:</strong> Deploy it for users! Put it on app stores or make it live on the web.
+            </div>
+        </div>
+
+        <!-- Slide 8: SDLC Real-World Example -->
+        <div class="slide">
+            <h2>SDLC Example: Building a To-Do App</h2>
+            
+            <div class="sdlc-step">
+                <span class="step-number">📋</span>
+                <strong>PLAN:</strong> "Students need a simple way to track homework assignments"
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">🎨</span>
+                <strong>DESIGN:</strong> Simple interface with: Add task button, task list, mark complete option
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">⚒️</span>
+                <strong>DEVELOP:</strong> Code the add/remove/complete functions using HTML, CSS, JavaScript
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">🧪</span>
+                <strong>TEST:</strong> Try adding 20 tasks, test on different phones, ask friends to use it
+            </div>
+
+            <div class="sdlc-step">
+                <span class="step-number">🚀</span>
+                <strong>LAUNCH:</strong> Share the link with classmates, get feedback, plan improvements
+            </div>
+        </div>
+
+        <!-- Slide 9: Why SDLC Matters -->
+        <div class="slide">
+            <h2>Why SDLC Matters</h2>
+            
+            <div class="grid">
+                <div class="field-card">
+                    <span class="icon">📋</span>
+                    <h3>Stays Organized</h3>
+                    <p>Everyone knows what to do and when</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🤝</span>
+                    <h3>Better Teamwork</h3>
+                    <p>Clear roles and responsibilities</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🎯</span>
+                    <h3>Prevents Chaos</h3>
+                    <p>Reduces confusion and wasted effort</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🏢</span>
+                    <h3>Industry Standard</h3>
+                    <p>How real companies build all software</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>Every app on your phone was built using this process!</strong></p>
+                <p>Instagram, TikTok, Snapchat, Discord - they all started with planning and design</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: AI's Impact on Development -->
+        <div class="slide">
+            <h2>How AI is Changing Development</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🤖 AI as a Tool</h3>
+                    <ul>
+                        <li>Helps write code faster</li>
+                        <li>Finds and fixes bugs</li>
+                        <li>Generates ideas and solutions</li>
+                        <li>Automates repetitive tasks</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🚀 New Opportunities</h3>
+                    <ul>
+                        <li>Build apps in minutes, not months</li>
+                        <li>Focus on creativity over syntax</li>
+                        <li>More people can become developers</li>
+                        <li>New job: AI Prompt Engineer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>AI doesn't replace developers - it makes them more powerful!</strong></p>
+                <p>Today you'll use AI to build your own application</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Wrap-Up & Key Takeaways -->
+        <div class="slide">
+            <h2>Key Takeaways</h2>
+            
+            <div class="grid">
+                <div class="field-card">
+                    <span class="icon">🌍</span>
+                    <h3>IT is Everywhere</h3>
+                    <p>And it's open to everyone willing to learn</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🛤️</span>
+                    <h3>Many Paths</h3>
+                    <p>College, bootcamps, self-taught - all can work</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">🆓</span>
+                    <h3>Start Today</h3>
+                    <p>Free resources available right now</p>
+                </div>
+                <div class="field-card">
+                    <span class="icon">📋</span>
+                    <h3>Process Matters</h3>
+                    <p>Good software starts with planning</p>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <!-- Slide 12: What's Next Today -->
+        <div class="slide">
+            <h2>What's Next Today</h2>
+            
+            <div class="highlight">
+                <h3>🚀 Your Development Project</h3>
+                <p>Work in teams to build a web application that solves a real problem</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>You'll Experience:</h3>
+                    <ul>
+                        <li>Planning your app concept</li>
+                        <li>Designing the user interface</li>
+                        <li>Developing with AI assistance</li>
+                        <li>Testing your application</li>
+                        <li>Deploying it live on the web</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Tools You'll Use:</h3>
+                    <ul>
+                        <li>Replit AI for development</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>Your creativity and problem-solving</li>
+                        <li>Teamwork and collaboration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>By the end of today, you'll have a working app live on the internet!</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Learn More After Today -->
+        <div class="slide">
+            <h2>Keep Learning After Today!</h2>
+            
+            <div class="two-column">
+                <div class="resource-list">
+                    <h3>🆓 Free Resources</h3>
+                    <ul class="small-text">
+                        <li><strong>Replit:</strong> Build and host projects</li>
+                        <li><strong>FreeCodeCamp:</strong> Complete web dev course</li>
+                        <li><strong>Scratch:</strong> Visual programming</li>
+                        <li><strong>W3Schools:</strong> Web development reference</li>
+                        <li><strong>Khan Academy:</strong> Programming basics</li>
+                    </ul>
+                </div>
+                <div class="resource-list">
+                    <h3>🎯 Next Steps</h3>
+                    <ul class="small-text">
+                        <li>Practice coding 15 minutes daily</li>
+                        <li>Build small projects</li>
+                        <li>Join coding communities online</li>
+                        <li>Explore local bootcamps</li>
+                        <li>Talk to school counselors about CS classes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🌟 For Advanced Learners</h3>
+                <p><strong>CS50:</strong> Harvard's free computer science course</p>
+                <p>One of the best introductions to programming and computer science</p>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">❮ Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next ❯</button>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            if (n >= totalSlides) currentSlideIndex = totalSlides - 1;
+            if (n < 0) currentSlideIndex = 0;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlideIndex].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlideIndex === 0;
+            document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides - 1;
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            showSlide(currentSlideIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+            if (event.key === ' ') {
+                event.preventDefault();
+                changeSlide(1);
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeSlide(1);  // Swipe left
+            if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right
+        }
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
