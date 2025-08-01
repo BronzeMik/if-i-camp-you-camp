@@ -18,6 +18,12 @@
             overflow: hidden;
         }
 
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -216,12 +222,6 @@
             font-size: 1.1em;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -239,11 +239,27 @@
 <body>
     <div class="slideshow-container">
         <div class="slide-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+            <span id="currentSlide">1</span> / <span id="totalSlides">15</span>
         </div>
 
-        <!-- Slide 1: Welcome & Introduction -->
+        <!-- Slide 1: Ice Breaker -->
         <div class="slide active">
+            <h1>Imagine This...</h1>
+            <div class="big-number">😱</div>
+            <div class="highlight">
+                <h2>You wake up tomorrow and there's...</h2>
+                <ul>
+                    <li>❌ No phone</li>
+                    <li>❌ No computer</li>
+                    <li>❌ No internet</li>
+                </ul>
+            </div>
+            <h3>What would you do first?</h3>
+            <p>Think about it... we'll discuss in a moment!</p>
+        </div>
+
+        <!-- Slide 2: Welcome & Introduction -->
+        <div class="slide">
             <h1>Welcome to IT & Software Development!</h1>
             <div class="highlight">
                 <h3>Workshop Goals</h3>
@@ -257,7 +273,47 @@
             <h2>Let's explore your future in technology!</h2>
         </div>
 
-        <!-- Slide 2: What is Information Technology (IT)? -->
+        <!-- Slide 3: What is IT & Why It Matters -->
+        <div class="slide">
+            <h2>What is IT & Why It Matters</h2>
+            
+            <div class="highlight">
+                <p><strong>IT Definition:</strong> Using computers, networks, and software to manage and share information</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>📅 Then (2005)</h3>
+                    <ul>
+                        <li>Paper maps for directions</li>
+                        <li>CDs for music</li>
+                        <li>Calling friends on house phones</li>
+                        <li>Going to stores to buy things</li>
+                        <li>Encyclopedias for research</li>
+                        <li>Waiting for photos to develop</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📱 Now (2025)</h3>
+                    <ul>
+                        <li>GPS navigation everywhere</li>
+                        <li>Streaming unlimited music</li>
+                        <li>Video calling anyone, anywhere</li>
+                        <li>Online shopping with same-day delivery</li>
+                        <li>Google for instant answers</li>
+                        <li>Taking unlimited photos/videos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>IT Changed How We:</h3>
+                <p><strong>Live:</strong> Smart homes, health apps | <strong>Learn:</strong> Online classes, educational videos</p>
+                <p><strong>Shop:</strong> E-commerce, digital payments | <strong>Play:</strong> Gaming, social media, streaming</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: What is Information Technology (IT)? -->
         <div class="slide">
             <h2>What is Information Technology (IT)?</h2>
             <div class="highlight">
@@ -285,7 +341,7 @@
             </div>
         </div>
 
-        <!-- Slide 3: Fields Within IT -->
+        <!-- Slide 5: Fields Within IT -->
         <div class="slide">
             <h2>Major Fields in IT</h2>
             <div class="grid">
@@ -580,7 +636,10 @@
                 </div>
             </div>
 
-            
+            <div class="highlight">
+                <h3>Your turn to experience the SDLC!</h3>
+                <p>Next: Plan, design, and build your own app using AI</p>
+            </div>
         </div>
 
         <!-- Slide 12: What's Next Today -->
